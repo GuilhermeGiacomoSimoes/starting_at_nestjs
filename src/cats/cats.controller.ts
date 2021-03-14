@@ -29,12 +29,12 @@ export class CatsController {
     return `This action returns a ${id} cat`;
   }
 
-  @Get('/returnObservable')
+  @Get('/observable/returnObservable')
   findAllObservable(): Observable<any[]> {
     return of(['parameterone', 'parametertwo']);
   }
 
-  @Get('/returnPromise')
+  @Get('/promise/returnPromise')
   async findAllPromise(): Promise<any[]> {
     return ['parameterone', 'parametertwo'];
   }
