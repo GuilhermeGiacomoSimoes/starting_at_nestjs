@@ -1,10 +1,11 @@
-import { Controller, Get, Post, Param } from '@nestjs/common';
+import { Controller, Get, Post, Param, Body } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
+import { CreateCatDto } from './dto';
 
 @Controller('cats')
 export class CatsController {
   @Post()
-  create(): string {
+  async create(@Body() createCatDto: CreateCatDto) {
     return 'This action adds new cat';
   }
 
