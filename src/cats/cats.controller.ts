@@ -1,42 +1,19 @@
-import { Controller, Get, Post, Param, Body } from '@nestjs/common';
-import { Observable, of } from 'rxjs';
-import { CreateCatDto } from './dto';
+import { Controller, Get, Post, Body } from '@nestjs/common';
+import { CreateCatDto } from './dto/create-cat.dto';
+import { CatsService } from './cats.service';
+import { Cats } from './interfaces/cats.interface';
 
 @Controller('cats')
 export class CatsController {
+  constructor(private catsService: CatsService) {}
+
   @Post()
   async create(@Body() createCatDto: CreateCatDto) {
-    return 'This action adds new cat';
+    this.catsService.create(createCatDto);
   }
 
   @Get()
-  findAll(): string {
-    return 'This action returns all cats';
-  }
-
-  @Get('ab*cd')
-  findAllAbCd(): string {
-    return 'This requestion contains character wildcard';
-  }
-
-  @Get(':id')
-  findOne(@Param() params): string {
-    console.log(params.id);
-    return `This action returns a ${params.id} cat`;
-  }
-
-  @Get('/byid/:id')
-  findById(@Param('id') id: string): string {
-    return `This action returns a ${id} cat`;
-  }
-
-  @Get('/observable/returnObservable')
-  findAllObservable(): Observable<any[]> {
-    return of(['parameterone', 'parametertwo']);
-  }
-
-  @Get('/promise/returnPromise')
-  async findAllPromise(): Promise<any[]> {
-    return ['parameterone', 'parametertwo'];
+  async findAll(): Promise<Cats[]> {
+    return this.catsService.findAll();
   }
 }
