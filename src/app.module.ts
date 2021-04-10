@@ -14,6 +14,6 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(LoggerMiddleware)
-      .forRoutes({ path: 'cats', method: RequestMethod.GET }); 
+      .forRoutes({ path: 'cats', method: RequestMethod.GET });
   }
 }
