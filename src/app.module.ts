@@ -1,7 +1,5 @@
 import {
   Module,
-  NestModule,
-  RequestMethod,
   MiddlewareConsumer
 } from '@nestjs/common';
 import { LoggerMiddleware } from './middleware/logger.middleware';
